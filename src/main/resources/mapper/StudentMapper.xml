@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- mapper是根标签，namespace属性：在Mybatis全局范围内找到一个具体的Mapper配置 -->
+<!-- 引入接口后，为了方便通过接口全类名来找到Mapper配置文件，所以通常将namespace属性设置为接口全类名 -->
+<mapper namespace="com.yt.mybatis.dao.StudentDao">
+    <resultMap id="studentMap" type="Student">
+        <id property="id" column="id"></id>
+        <result property="major" column="major"></result>
+        <result property="name" column="name"></result>
+    </resultMap>
+<!--     List<Student> getStudentByName(@Param("name") String name);-->
+    <select id="getStudentByName" resultMap="studentMap">
+        select * from student
+        <where>
+         <if test="name != '' and name != null">
+            name = #{name}
+         </if>
+        </where>
+    </select>
+<!--    List<Student> getStudentByMajor(@Param("major") String major);-->
+    <select id="getStudentByMajor" resultMap="studentMap">
+        select * from student where 1=1
+        <choose>
+            <when test="name != '' and name != null">
+                and name like concat ('%',#{name},'%')
+            </when>
+            <when test="major != '' and major != null">
+                and major= #{major}
+            </when>
+            <otherwise>and id is not null</otherwise>
+        </choose>
+    </select>
+   <!-- <select id="getStudentById" resultMap="studentMap">
+        select * from student where 1=1
+        <choose>
+            <when test="name != '' and name != null">
+                and name like concat ('%',#{name},'%')
+            </when>
+            <when test="major != '' and major != null">
+                and major like concat ('%',#{major},'%')
+            </when>
+            <otherwise>and id is not null</otherwise>
+        </choose>
+    </select>-->
+    <select id="getStudentById" resultMap="studentMap">
+        select * from student where name =null and name='' and major='' and major =null and id is not null
+    </select>
+
+    <select id="findByList" resultMap="studentMap">
+        select * from student where id in
+        <foreach item="id" index="index" collection="ids" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </select>
+
+</mapper>
