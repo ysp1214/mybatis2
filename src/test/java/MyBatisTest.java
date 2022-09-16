@@ -51,4 +51,7 @@ public class MyBatisTest {
         List<Student> byList = studentDao.findByList(ids);
         byList.forEach(System.out::println);*/
     }
+    @Test
+    public void m2(){}
+
 }
