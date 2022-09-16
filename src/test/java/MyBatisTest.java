@@ -52,6 +52,9 @@ public class MyBatisTest {
         byList.forEach(System.out::println);*/
     }
     @Test
-    public void m2(){}
+    public void m2(){
+        System.out.println("你好世界！");
+        System.out.println("你好中国！");
+    }
 
 }
