@@ -57,6 +57,7 @@ public class MyBatisTest {
         System.out.println("你好中国！");
         System.out.println("master commit2");
         System.out.println("第二次hot_fix操作");
+        System.out.println("将数据推送到远程端");
     }
 
 }
