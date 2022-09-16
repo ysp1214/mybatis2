@@ -55,6 +55,7 @@ public class MyBatisTest {
     public void m2(){
         System.out.println("你好世界！");
         System.out.println("你好中国！");
+        System.out.println("master commit2");
     }
 
 }
