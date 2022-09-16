@@ -58,6 +58,7 @@ public class MyBatisTest {
         System.out.println("master commit2");
         System.out.println("第二次hot_fix操作");
         System.out.println("将数据推送到远程端");
+        Sysetm.out.println("将数据从远程端拉取到本地端");
     }
 
 }
